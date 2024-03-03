@@ -9,7 +9,7 @@ class Company(models.Model):
     
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name='restaurants',  on_delete=models.CASCADE)
     logo_img_path = models.CharField(max_length=100)
     restaurant_img_path = models.CharField(max_length=100)
 

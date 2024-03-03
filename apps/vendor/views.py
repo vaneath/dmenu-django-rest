@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from apps.api_v1.models import Company, Restaurant
-from apps.api_v1.serializers import CompanySerializer, RestaurantSerializer
+from apps.vendor.models import Company, Restaurant
+from apps.vendor.serializers import CompanySerializer, RestaurantSerializer
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
