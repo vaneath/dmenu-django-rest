@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api_v1', '0001_initial'),
+        ('vendor', '0001_initial'),
     ]
 
     operations = [
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('logo_img_path', models.CharField(max_length=100)),
                 ('restaurant_img_path', models.CharField(max_length=100)),
-                ('company', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api_v1.company')),
+                ('company', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='vendor.company')),
             ],
         ),
     ]
