@@ -1,3 +1,5 @@
+from django.contrib.auth import authenticate
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from .models import UserDecorator
@@ -8,9 +10,9 @@ from .models import UserDecorator
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserDecorator
-        fields = '__all__'
+        fields = ['first_name', 'last_name', 'email']
 
-class CreateUserSerializer(serializers.ModelSerializer):
+class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserDecorator
         fields = '__all__'
@@ -25,30 +27,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         user = UserDecorator.objects.create_user(**validated_data)
         return user
 
-class UpdateUserSerializer(serializers.ModelSerializer):
+class LoginUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserDecorator
-        fields = '__all__'
-
-    def update(self, instance, validated_data):
-        password = validated_data.pop('password')
-
-        if password:
-            instance.set_password(password)
-
-        instance = super().update(instance, validated_data)
-
-        return instance
-
-class LoginSerializer(serializers.Serializer):
-    email = serializers.EmailField()
-    password = serializers.CharField()
-    
-    def validate(self, attrs):
-        email = attrs.get('email', '').strip().lower()
-        password = attrs.get('password', '')
-        user = UserDecorator.objects.filter(email=email).first()
-        if not user or not user.check_password(password):
-            raise serializers.ValidationError('Invalid email or password.')
-        attrs['user'] = user
-        return attrs
+        fields = ['first_name', 'last_name', 'email']
