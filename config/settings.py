@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'knox',
 
     'apps.account',
+    'apps.authtoken',
     'apps.base',
     'apps.product',
     'apps.taxon',
