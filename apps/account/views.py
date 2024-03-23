@@ -10,7 +10,7 @@ from .serializers import (LoginUserSerializer, RegisterUserSerializer,
                           UserSerializer)
 
 
-class RegisterUserAPI(CreateAPIView):
+class RegisterView(CreateAPIView):
   query_set = UserDecorator.objects.all()
   serializer_class = RegisterUserSerializer
   permission_classes = (AllowAny,)
